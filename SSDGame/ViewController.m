@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 CGFloat side = 50;
+NSInteger const kCount = 6;
 
 @interface ViewController ()
 
@@ -23,15 +24,15 @@ CGFloat side = 50;
 }
 
 - (void)startGame {
-    side = ([[UIScreen mainScreen] bounds].size.width - 10 * 2) / 6.0;
+    side = ([[UIScreen mainScreen] bounds].size.width - 10 * 2) * 1.0 / kCount;
     NSMutableArray *arcArray = [[NSMutableArray alloc] init];
-    for (int r = 0; r < 6*6 / 2; r++) {
-         int random = arc4random() % 6;
+    for (int r = 0; r < kCount * kCount / 2; r++) {
+         int random = arc4random() % kCount;
         [arcArray addObject:@(random)];
         [arcArray addObject:@(random)];
     }
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < 6; j++) {
+    for (int i = 0; i < kCount; i++) {
+        for (int j = 0; j < kCount; j++) {
             UIButton *btn = [[UIButton alloc] init];
             [UIView beginAnimations:nil context:nil];
             btn.frame = CGRectMake(200, 200, side, side);
